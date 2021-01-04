@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,30 +21,37 @@ public class ProductController {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	@PostMapping("/addProduct")
+	@PostMapping("/addConstellation")
 	public String saveProduct(@RequestBody Product product) {
 		productRepository.save(product);
 		return "Product added successfully::"+product.getId();
 		
 	}
 	
-	@GetMapping("/findAllProducts")
+	@GetMapping("/findAllConstellations")
 	public List<Product> getProducts() {
 		return productRepository.findAll();
 	}
 
-	@GetMapping("/findProduct/{id}")
+	@GetMapping("/findConstellations/{id}")
 	public Optional<Product> getProduct(@PathVariable Long id) {
 		return productRepository.findById(id);
 	}
 	
-	@GetMapping("/deleteProduct/{id}")
+	@GetMapping("/deleteConstellations/{id}")
 	public String deleteProduct(@PathVariable Long id) {
 		productRepository.deleteById(id);
 		return "Deleted Product Successfully::"+id;
 	}
 	
-
-
-
+	@PostMapping("/update/{id}")
+	public String updateUser(@PathVariable("id") long id, Product product,
+	  BindingResult result, Model model) {	
+		if (result.hasErrors()) {
+			product.setId(id);
+	        return "update-Constellation";
+	    }
+		productRepository.save(product);
+	    return "redirect:/index";
+	}
 }

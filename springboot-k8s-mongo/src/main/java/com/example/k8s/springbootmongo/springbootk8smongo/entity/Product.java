@@ -7,9 +7,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Product {
 	 @Id  
     private Long id;
-    private String productId;
+    private String ConstellationsId;
     private String description;
-    private double price;
+    private String orbit;
+    private String health;
     
 
 	public Long getId() {
@@ -18,11 +19,11 @@ public class Product {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getProductId() {
-		return productId;
+	public String getConstellationsId() {
+		return ConstellationsId;
 	}
-	public void setProductId(String productId) {
-		this.productId = productId;
+	public void setConstellationsId(String ConstellationsId) {
+		this.ConstellationsId = ConstellationsId;
 	}
 	public String getDescription() {
 		return description;
@@ -30,11 +31,17 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public double getPrice() {
-		return price;
+	public String getorbit() {
+		return orbit;
 	}
-	public void setPrice(double price) {
-		this.price = price;
+	public void setorbit(String orbit) {
+		this.orbit = orbit;
+	}
+	public String gethealth() {
+		return health;
+	}
+	public void sethealth(String health) {
+		this.health = health;
 	}
     
     
