@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,15 +46,19 @@ public class SatelliteController {
 		return "Deleted Constellation Successfully::"+id;
 	}
 	
-	@PostMapping("/update/{id}")
-	public String updateSatellite(@PathVariable Long id, Satellite satellite,
-	  BindingResult result, Model model) {	
-		if (result.hasErrors()) {
-			satellite.setId(id);
-	        return "update-Constellation";
-	    }
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Object> updateSatellite(@RequestBody Satellite satellite, @PathVariable long id) {
+
+		Optional<Satellite> satelliteOptional = satelliteRepository.findById(id);
+
+		if (!satelliteOptional.isPresent())
+			return ResponseEntity.notFound().build();
+
+		satellite.setId(id);
+		
 		satelliteRepository.save(satellite);
-	    return "redirect";
+
+		return ResponseEntity.noContent().build();
 	}
 	
 }
