@@ -24,7 +24,7 @@ public class ProductController {
 	@PostMapping("/addConstellation")
 	public String saveProduct(@RequestBody Product product) {
 		productRepository.save(product);
-		return "Product added successfully::"+product.getId();
+		return "Constellation added successfully::"+product.getId();
 		
 	}
 	
@@ -41,17 +41,7 @@ public class ProductController {
 	@GetMapping("/deleteConstellations/{id}")
 	public String deleteProduct(@PathVariable Long id) {
 		productRepository.deleteById(id);
-		return "Deleted Product Successfully::"+id;
+		return "Deleted Constellation Successfully::"+id;
 	}
 	
-	@PostMapping("/update/{id}")
-	public String updateUser(@PathVariable("id") long id, Product product,
-	  BindingResult result, Model model) {	
-		if (result.hasErrors()) {
-			product.setId(id);
-	        return "update-Constellation";
-	    }
-		productRepository.save(product);
-	    return "redirect:/index";
-	}
 }
