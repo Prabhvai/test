@@ -9,8 +9,6 @@ spec:
   storageClassName: manual
   accessModes:
     - ReadWriteMany
-  hostPath:
-    path: "/mnt/data"
   resources:
     requests:
       storage: 250Mi
