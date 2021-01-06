@@ -44,4 +44,15 @@ public class SatelliteController {
 		return "Deleted Constellation Successfully::"+id;
 	}
 	
+	@PostMapping("/update/{id}")
+	public String updateSatellite(@PathVariable Long id, Satellite satellite,
+	  BindingResult result, Model model) {	
+		if (result.hasErrors()) {
+			satellite.setId(id);
+	        return "update-Constellation";
+	    }
+		satelliteRepository.save(satellite);
+	    return "redirect";
+	}
+	
 }
