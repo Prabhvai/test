@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: spring-mongo-service
-          image: vamsitechtuts/springboot-k8s-mongo
-          imagePullPolicy: IfNotPresent
+          image: prabhavi/springboot-k8s-mongo
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8080
