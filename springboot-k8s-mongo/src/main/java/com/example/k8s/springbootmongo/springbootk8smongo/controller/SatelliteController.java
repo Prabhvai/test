@@ -12,35 +12,35 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.k8s.springbootmongo.springbootk8smongo.entity.Product;
-import com.example.k8s.springbootmongo.springbootk8smongo.repository.ProductRepository;
+import com.example.k8s.springbootmongo.springbootk8smongo.entity.Satellite;
+import com.example.k8s.springbootmongo.springbootk8smongo.repository.SatelliteRepository;
 
 @RestController
-public class ProductController {
+public class SatelliteController {
 	
 	@Autowired
-	private ProductRepository productRepository;
+	private SatelliteRepository satelliteRepository;
 	
 	@PostMapping("/addConstellation")
-	public String saveProduct(@RequestBody Product product) {
-		productRepository.save(product);
-		return "Constellation added successfully::"+product.getId();
+	public String saveSatellite(@RequestBody Satellite satellite) {
+		satelliteRepository.save(satellite);
+		return "Constellation added successfully::"+satellite.getId();
 		
 	}
 	
 	@GetMapping("/findAllConstellations")
-	public List<Product> getProducts() {
-		return productRepository.findAll();
+	public List<Satellite> getSatellites() {
+		return satelliteRepository.findAll();
 	}
 
 	@GetMapping("/findConstellations/{id}")
-	public Optional<Product> getProduct(@PathVariable Long id) {
-		return productRepository.findById(id);
+	public Optional<Satellite> getSatellite(@PathVariable Long id) {
+		return satelliteRepository.findById(id);
 	}
 	
 	@GetMapping("/deleteConstellations/{id}")
-	public String deleteProduct(@PathVariable Long id) {
-		productRepository.deleteById(id);
+	public String deleteSatellite(@PathVariable Long id) {
+		satelliteRepository.deleteById(id);
 		return "Deleted Constellation Successfully::"+id;
 	}
 	

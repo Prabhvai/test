@@ -3,8 +3,8 @@ package com.example.k8s.springbootmongo.springbootk8smongo.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="product")
-public class Product {
+@Document(collection="satellite")
+public class Satellite {
 	 @Id  
     private Long id;
     private String ConstellationsId;
