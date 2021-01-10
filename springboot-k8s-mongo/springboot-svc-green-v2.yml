@@ -2,11 +2,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: spring-mongo-service
+  name: spring-mongo-service-green
 spec:
   selector:
     app: spring-mongo-service
-    version:"v2"
+    version: "v2"
   ports:
   - name: http 
     port: 8080

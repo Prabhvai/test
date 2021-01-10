@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring-mongo-service
+  name: spring-mongo-service-v2
 spec:
   selector:
       matchLabels:
@@ -17,7 +17,7 @@ spec:
     metadata:
       labels:
         app: spring-mongo-service
-        version:"v2"
+        version: "v2"
     spec:
       containers:
         - name: spring-mongo-service
