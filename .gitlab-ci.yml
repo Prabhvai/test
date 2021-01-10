@@ -35,8 +35,10 @@ deploy:
     name: production
   script:
     - cd springboot-k8s-mongo
-    - kubectl apply -f springboot-deployment.yml
-    - kubectl apply -f springboot-service.yml
+    - kubectl apply -f springboot-dep-blue-v1.yml
+    - kubectl apply -f springboot-dep-green-v2.yml
+    - kubectl apply -f springboot-svc-blue-v1.yml
+    - kubectl apply -f springboot-svc-green-v2.yml
     - kubectl get pods
     - kubectl get svc
     - echo done
