@@ -1,0 +1,42 @@
+#variables:
+#  KUBE_NAMESPACE: default
+
+stages:
+  - build
+  - package
+  - deploy
+  
+maven-build:
+  image: maven:3-jdk-8
+  stage: build
+  script:
+    - cd springboot-k8s-mongo
+    - mvn clean install -DskipTests=true
+  artifacts:
+    paths:
+      - springboot-k8s-mongo/target/*.jar
+
+docker-build:
+  image: docker:latest
+  stage: package
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "prabhavi" -p "Ilovemc1992"
+  script:
+    - cd springboot-k8s-mongo
+    - docker build  -t "prabhavi/springboot-k8s-mongo" .
+    - docker push "prabhavi/springboot-k8s-mongo"
+
+deploy:
+  image: google/cloud-sdk
+  stage: deploy
+  environment:
+    name: production
+  script:
+    - cd springboot-k8s-mongo
+    - kubectl apply -f springboot-deployment.yml
+    - kubectl apply -f springboot-service.yml
+    - kubectl get pods
+    - kubectl get svc
+    - echo done
