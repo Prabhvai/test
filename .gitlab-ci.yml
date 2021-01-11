@@ -22,7 +22,7 @@ docker-build:
   services:
     - docker:dind
   before_script:
-    - docker login -u "prabhavi" -p "Ilovemc1992"
+    - docker login -u "prabhavi" -p "Mcprabz1992"
   script:
     - cd springboot-k8s-mongo
     - docker build  -t "prabhavi/springboot-k8s-mongo:v1" .
