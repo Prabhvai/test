@@ -25,10 +25,8 @@ docker-build:
     - docker login -u "prabhavi" -p "Mcprabz1992"
   script:
     - cd springboot-k8s-mongo
-    - docker build  -t "prabhavi/springboot-k8s-mongo:v1" .
-    - docker push "prabhavi/springboot-k8s-mongo:v1"
-    - docker build  -t "prabhavi/springboot-k8s-mongo:v2" .
-    - docker push "prabhavi/springboot-k8s-mongo:v2"
+    - docker build  -t "prabhavi/springboot-k8s-mongo" .
+    - docker push "prabhavi/springboot-k8s-mongo"
 
 deploy:
   image: google/cloud-sdk
@@ -37,10 +35,8 @@ deploy:
     name: production
   script:
     - cd springboot-k8s-mongo
-    - kubectl apply -f springboot-dep-blue-v1.yml
-    - kubectl apply -f springboot-dep-green-v2.yml
-    - kubectl apply -f springboot-svc-blue-v1.yml
-    - kubectl apply -f springboot-svc-green-v2.yml
+    - kubectl apply -f springboot-deployment.yml
+    - kubectl apply -f springboot-service.yml
     - kubectl get pods
     - kubectl get svc
     - echo done
