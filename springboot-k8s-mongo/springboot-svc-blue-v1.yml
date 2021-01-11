@@ -3,6 +3,9 @@ kind: Service
 apiVersion: v1
 metadata:
   name: spring-mongo-service
+  labels:
+    name: spring-mongo-service
+    version: "v1"
 spec:
   selector:
     app: spring-mongo-service
@@ -11,4 +14,3 @@ spec:
   - name: http 
     port: 8080
   type: LoadBalancer
-

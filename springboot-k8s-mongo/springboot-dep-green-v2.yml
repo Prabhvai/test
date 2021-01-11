@@ -7,6 +7,7 @@ spec:
   selector:
       matchLabels:
         app: spring-mongo-service
+        version: "v2"
   replicas: 2
   strategy:
     type: RollingUpdate
@@ -47,4 +48,3 @@ spec:
                 configMapKeyRef:
                   name: mongo-conf 
                   key: host
-                  
